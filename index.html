@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <meta
+      name="description"
+      content="VRViz 是原生运行于 Meta Quest 的一体机 ROS 可视化应用，无需 PC 连接、串流或数据线。"
+    />
+    <meta property="og:title" content="VRViz — 让机器人数据进入空间" />
+    <meta
+      property="og:description"
+      content="原生运行于 Meta Quest 的一体机 ROS 可视化应用，无需 PC 连接或串流。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/vrviz-quest-icon.png" />
+    <title>VRViz — 沉浸式 ROS 可视化</title>
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="icon" href="assets/vrviz-quest-icon.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
+    <header class="site-header" data-header>
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="VRViz 首页">
+          <img class="brand-app-icon" src="assets/vrviz-quest-icon.png" alt="" aria-hidden="true" />
+          <span class="brand-wordmark"><span class="brand-v">V</span><span class="brand-rest">Rviz</span></span>
+        </a>
+        <div class="nav-actions">
+          <div class="language-switcher" role="group" aria-label="Language / 语言 / 言語">
+            <button type="button" data-lang="zh" aria-pressed="true">中</button>
+            <button type="button" data-lang="ja" aria-pressed="false">日</button>
+            <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="sr-only" data-i18n="menu">打开导航</span>
+          <i></i><i></i>
+          </button>
+        </div>
+        <nav id="site-nav" class="site-nav" aria-label="主要导航">
+          <a href="#features" data-i18n="navFeatures">核心能力</a>
+          <a href="#workflow" data-i18n="navWorkflow">工作方式</a>
+          <a href="#start" data-i18n="navStart">快速开始</a>
+          <a class="nav-cta" href="#download" data-i18n="navDownload">获取应用</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow"><span></span><b data-i18n="heroEyebrow"> META QUEST APP · ROS · UNITY</b></div>
+            <div class="quest-pill"><span class="quest-symbol" aria-hidden="true">∞</span><span data-i18n="questBadge">Quest 一体机原生应用</span></div>
+            <h1 data-i18n-html="heroTitle">让机器人数据<br /><em>进入空间</em></h1>
+            <p class="hero-lead" data-i18n="heroLead">
+              VRViz 是面向 ROS 的沉浸式三维可视化应用。把激光雷达、点云与机器人状态放进同一个可交互空间，让调试从“看懂画面”变成“置身现场”。
+            </p>
+            <div class="hero-actions">
+              <!-- Replace href when the VRViz Quest Store page is available. -->
+              <a class="button button-primary" href="#download"><span data-i18n="heroCta">获取 Quest 应用</span><span aria-hidden="true">↗</span></a>
+              <a class="button button-quiet" href="#features"><span data-i18n="heroExplore">探索能力</span><span aria-hidden="true">↓</span></a>
+            </div>
+            <p class="standalone-note"><span aria-hidden="true">✓</span><span data-i18n="standaloneNote">在 Quest 本地独立运行，无需连接 PC、串流或使用数据线</span></p>
+            <dl class="hero-facts" aria-label="VRViz 技术摘要">
+              <div><dt data-i18n="factPlatform">平台</dt><dd>Meta Quest</dd></div>
+              <div><dt data-i18n="factConnection">连接</dt><dd>WebSocket</dd></div>
+              <div><dt data-i18n="factEngine">运行方式</dt><dd>Standalone</dd></div>
+            </dl>
+          </div>
+
+          <div class="hero-visual reveal" aria-label="VRViz 三维机器人数据示意图">
+            <div class="visual-stage">
+              <div class="hud-top"><span>VRVIZ / LIVE VIEW</span><span class="live"><i></i> CONNECTED</span></div>
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="scan scan-one"></div>
+              <div class="scan scan-two"></div>
+              <div class="app-icon-wrap">
+                <img class="quest-app-icon" src="assets/vrviz-quest-icon.png" alt="VRViz Quest application icon" />
+                <span class="icon-glow" aria-hidden="true"></span>
+              </div>
+              <div class="point-cloud" aria-hidden="true"></div>
+              <div class="axis axis-x">X</div>
+              <div class="axis axis-y">Y</div>
+              <div class="data-card card-a"><small>PLATFORM</small><strong>Quest</strong><span>Standalone VR</span></div>
+              <div class="data-card card-b"><small>STREAM</small><strong>ROS</strong><span>PointCloud2</span></div>
+              <div class="hud-bottom"><span>FRAME / map</span><span>60 FPS</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-foot container"><span>01</span><div></div><p data-i18n="heroFoot">从消息流到空间认知</p></div>
+      </section>
+
+      <section id="about" class="statement section-dark">
+        <div class="container statement-grid reveal">
+          <div>
+            <p class="section-index" data-i18n="aboutIndex">01 / 关于</p>
+            <h2 data-i18n-html="aboutTitle">不只是查看数据，<br />而是理解现场。</h2>
+          </div>
+          <div class="statement-copy">
+            <p data-i18n="aboutP1">
+              传统可视化把复杂的机器人环境压缩进一块屏幕。VRViz 使用三维空间保留尺度、方位与层次，让传感器数据和机器人本体保持直观的空间关系。
+            </p>
+            <p data-i18n="aboutP2">
+              VRViz 是原生运行于 Meta Quest 的一体机 VR 应用，无需连接 PC、PC 串流或数据线。应用通过无线网络连接可访问的 rosbridge，在 Quest 本地按需订阅并呈现 ROS 数据。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features section-light">
+        <div class="container">
+          <div class="section-heading reveal">
+            <div><p class="section-index" data-i18n="featuresIndex">02 / 核心能力</p><h2 data-i18n="featuresTitle">关键数据，清晰呈现</h2></div>
+            <p data-i18n="featuresLead">围绕 Quest 上的机器人空间感知与调试工作流设计，保持连接、渲染与交互的轻量和直接。</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card featured reveal">
+              <div class="feature-number">01</div>
+              <div class="feature-icon cloud-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <div><h3 data-i18n="feature1Title">高密度点云</h3><p data-i18n="feature1Text">呈现 ROS PointCloud2 数据，保留环境结构与深度关系，用空间视角观察感知结果。</p></div>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-number">02</div>
+              <div class="feature-icon laser-icon" aria-hidden="true"><i></i></div>
+              <div><h3 data-i18n="feature2Title">激光扫描</h3><p data-i18n="feature2Text">实时显示 LaserScan 数据，快速识别轮廓、障碍物与雷达覆盖范围。</p></div>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-number">03</div>
+              <div class="feature-icon topic-icon" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div><h3 data-i18n="feature3Title">按需订阅</h3><p data-i18n="feature3Text">通过主题开关控制订阅和显示，聚焦当前任务，减少无关数据干扰。</p></div>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-number">04</div>
+              <div class="feature-icon frame-icon" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div><h3 data-i18n="feature4Title">空间坐标</h3><p data-i18n="feature4Text">在统一三维场景中组织机器人与传感器信息，建立直观的空间参照。</p></div>
+            </article>
+            <article class="feature-card audio-feature reveal">
+              <div class="feature-number">05 / ONLINE AUDIO</div>
+              <div class="audio-visual" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="audio-content">
+                <div class="audio-platforms"><span>AUDIUS</span><span>SPOTIFY</span></div>
+                <h3 data-i18n="feature5Title">在线音乐播放</h3>
+                <p data-i18n="feature5Text">在 VRViz 中播放 Audius 或 Spotify 在线音乐，在机器人数据空间中保持连续的沉浸体验。</p>
+                <p class="requirement"><b data-i18n="requirementLabel">使用条件</b><span data-i18n="feature5Note">Spotify 播放需要先在 Meta Quest 中安装 Spotify 应用；Audius 可直接使用。</span></p>
+              </div>
+            </article>
+            <article class="feature-card controller-feature reveal">
+              <div class="feature-number">06 / DUAL CONTROLLER MODE</div>
+              <div class="controller-visual" aria-hidden="true">
+                <span class="controller-body"><i></i><i></i><b></b><b></b></span>
+                <span class="mode-line"></span>
+              </div>
+              <div class="controller-content">
+                <h3 data-i18n="feature6Title">手柄双模式控制</h3>
+                <p data-i18n="feature6Text">使用 Quest 手柄在机器人遥控与人员移动之间切换，让操作与观察保持在同一个沉浸式界面中。</p>
+                <div class="controller-modes">
+                  <div><span>01</span><strong data-i18n="robotModeTitle">机器人遥控</strong><small data-i18n="robotModeText">通过手柄控制机器人移动，并向 ROS 输出 /cmd_vel 速度指令。</small></div>
+                  <div><span>02</span><strong data-i18n="humanModeTitle">人员移动</strong><small data-i18n="humanModeText">使用手柄控制用户在 VR 场景中的移动与观察位置。</small></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="workflow section-dark">
+        <div class="container">
+          <div class="section-heading inverted reveal">
+            <div><p class="section-index" data-i18n="workflowIndex">03 / 工作方式</p><h2 data-i18n="workflowTitle">三步进入机器人现场</h2></div>
+            <p data-i18n="workflowLead">戴上 Quest，VRViz 保持现有 ROS 工作流，只在数据与观察者之间增加沉浸式可视化层。</p>
+          </div>
+          <ol class="steps reveal">
+            <li><span>01</span><div><h3 data-i18n="step1Title">连接 ROS</h3><p data-i18n="step1Text">填写 rosbridge WebSocket 地址，与正在运行的 ROS 系统建立通信。</p></div><b aria-hidden="true">→</b></li>
+            <li><span>02</span><div><h3 data-i18n="step2Title">选择主题</h3><p data-i18n="step2Text">配置 PointCloud2、LaserScan 等话题，并按当前任务启用所需数据。</p></div><b aria-hidden="true">→</b></li>
+            <li><span>03</span><div><h3 data-i18n="step3Title">进入空间</h3><p data-i18n="step3Text">佩戴 Quest，在 Unity 构建的三维场景中观察数据流，检查感知与环境之间的关系。</p></div></li>
+          </ol>
+          <div class="pipeline reveal" aria-label="数据传输流程">
+            <span>ROS<br /><small>DATA SOURCE</small></span><i></i>
+            <span>rosbridge<br /><small>WEBSOCKET</small></span><i></i>
+            <span>VRViz<br /><small>UNITY CLIENT</small></span><i></i>
+            <span>Spatial View<br /><small>IMMERSIVE OUTPUT</small></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="start" class="start section-light">
+        <div class="container start-grid">
+          <div class="reveal">
+            <p class="section-index" data-i18n="startIndex">04 / 快速开始</p>
+            <h2 data-i18n-html="startTitle">准备好 Quest<br />与 ROS 数据流</h2>
+            <p class="start-lead" data-i18n="startLead">完成三个基础条件，即可在 Quest 的 VRViz 中开始查看机器人数据。</p>
+          </div>
+          <div class="checklist reveal">
+            <div><span>✓</span><p><strong data-i18n="check1Title">运行 ROS 环境</strong><small data-i18n="check1Text">确保需要查看的传感器话题正在发布。</small></p></div>
+            <div><span>✓</span><p><strong data-i18n="check2Title">启动 rosbridge</strong><small data-i18n="check2Text">开放 Quest 上的 VRViz 可访问的 WebSocket 地址。</small></p></div>
+            <div><span>✓</span><p><strong data-i18n="check3Title">安装并配置 VRViz</strong><small data-i18n="check3Text">在 Quest 中输入连接地址与话题名称，然后启用对应显示。</small></p></div>
+          </div>
+        </div>
+        <div id="download" class="container download-panel reveal">
+          <div class="download-copy">
+            <span class="quest-symbol" aria-hidden="true">∞</span>
+            <div><small data-i18n="downloadLabel">正式商店链接</small><h3 data-i18n="downloadTitle">获取 VRViz for Quest</h3><p data-i18n="downloadText">Quest Store 链接会随页面语言自动打开对应地区版本。</p></div>
+          </div>
+          <div class="download-actions">
+            <a class="button button-dark" href="https://www.meta.com/zh-cn/experiences/vrviz/2161760508085814/" data-store-link target="_blank" rel="noreferrer"><span data-i18n="questLink">Quest Store</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="container note reveal">
+          <span>NOTE</span>
+          <p data-i18n-html="note">具体支持的话题类型、Quest 型号与启动参数取决于当前 VRViz 构建版本。发布前请在 <code>index.html</code> 中替换两个预留链接。</p>
+        </div>
+      </section>
+
+      <section id="privacy" class="privacy section-dark">
+        <div class="container">
+          <div class="section-heading inverted reveal">
+            <div><p class="section-index" data-i18n="privacyIndex">05 / 隐私政策</p><h2 data-i18n="privacyTitle">你的数据，留在你的控制之下</h2></div>
+            <p data-i18n="privacyLead">VRViz 以 Quest 本地处理为核心。以下说明适用于当前版本，并应在正式发布前根据实际构建与发行地区复核。</p>
+          </div>
+          <div class="privacy-meta reveal">
+            <span><b data-i18n="privacyEffective">生效日期</b>2026-08-22</span>
+            <span><b data-i18n="privacyApplies">适用范围</b>VRViz for Meta Quest</span>
+          </div>
+          <div class="privacy-grid">
+            <article class="privacy-card reveal"><span>01</span><h3 data-i18n="privacyLocalTitle">本地数据处理</h3><p data-i18n="privacyLocalText">机器人可视化、手柄输入和场景移动主要在 Quest 设备本地处理。VRViz 当前不要求创建用户账户。</p></article>
+            <article class="privacy-card reveal"><span>02</span><h3 data-i18n="privacyRosTitle">ROS 网络数据</h3><p data-i18n="privacyRosText">应用仅连接用户主动配置的 rosbridge WebSocket 地址。ROS 话题内容会在用户指定的网络中传输，请由用户负责网络、访问控制和 rosbridge 安全。</p></article>
+            <article class="privacy-card reveal"><span>03</span><h3 data-i18n="privacyStorageTitle">设备存储</h3><p data-i18n="privacyStorageText">语言偏好、连接参数或应用设置可能保存在 Quest 本地，用于恢复用户配置。卸载应用或清除应用数据可移除这些本地信息。</p></article>
+            <article class="privacy-card reveal"><span>04</span><h3 data-i18n="privacyThirdTitle">第三方音乐服务</h3><p data-i18n="privacyThirdText">Audius 和 Spotify 的内容、账户与网络请求受各自隐私政策约束。Spotify 功能通过 Quest 上预先安装的 Spotify 应用提供，VRViz 不保存 Spotify 登录凭据。</p></article>
+            <article class="privacy-card reveal"><span>05</span><h3 data-i18n="privacyPermissionTitle">设备权限</h3><p data-i18n="privacyPermissionText">VRViz 仅应请求实现 VR 交互、手柄操作、网络通信和音频播放所需的设备权限。权限可在 Quest 系统设置中查看或撤销。</p></article>
+            <article class="privacy-card reveal"><span>06</span><h3 data-i18n="privacyRetentionTitle">收集与保留</h3><p data-i18n="privacyRetentionText">当前说明页未集成账号系统、广告或网站分析。若未来版本加入遥测、云服务或崩溃报告，本政策将在启用前更新并说明数据用途与保留期限。</p></article>
+          </div>
+          <div class="privacy-contact reveal">
+            <div><small data-i18n="privacyContactLabel">隐私咨询</small><p data-i18n="privacyContactText">如对本隐私政策或 VRViz 的数据处理方式有疑问，请通过以下邮箱联系开发者。</p></div>
+            <div class="contact-details">
+              <span><small data-i18n="developerLabel">开发者</small><b>frienkie</b></span>
+              <a href="mailto:frienkiely@outlook.com"><small data-i18n="emailLabel">联系邮箱</small><b>frienkiely@outlook.com</b></a>
+              <span><small data-i18n="regionLabel">所在地区</small><b data-i18n="regionValue">日本</b></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="container closing-inner reveal">
+          <p>VRVIZ / SPATIAL ROBOTICS</p>
+          <h2 data-i18n-html="closingTitle">看见数据。<br /><em>理解空间。</em></h2>
+          <a class="button button-primary" href="#top"><span data-i18n="backTop">返回顶部</span><span aria-hidden="true">↑</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <a class="brand footer-brand" href="#top"><img class="brand-app-icon" src="assets/vrviz-quest-icon.png" alt="" aria-hidden="true" /><span class="brand-wordmark"><span class="brand-v">V</span><span class="brand-rest">Rviz</span></span></a>
+        <p data-i18n="footerText">原生运行于 Meta Quest 的一体机应用，无需 PC 连接或串流。</p>
+        <p class="credit"><a href="#privacy" data-i18n="privacyNav">隐私政策</a><span aria-hidden="true"> · </span><span data-i18n="creditPrefix">页面结构参考</span> <a href="https://github.com/StartBootstrap/startbootstrap-landing-page" target="_blank" rel="noreferrer">Start Bootstrap Landing Page</a> · MIT License</p>
+      </div>
+    </footer>
+  </body>
+</html>
