@@ -16,7 +16,16 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/vrviz-quest-icon.png" />
     <title>VRViz — 沉浸式 ROS 可视化</title>
-    <script>document.documentElement.classList.add("js");</script>
+    <script>
+      document.documentElement.classList.add("js");
+      let preferredLanguage = "";
+      try { preferredLanguage = localStorage.getItem("vrviz-language") || ""; } catch { /* Continue with browser language. */ }
+      if (!['zh', 'ja', 'en'].includes(preferredLanguage)) {
+        const browserLanguage = navigator.language.toLowerCase();
+        preferredLanguage = browserLanguage.startsWith("ja") ? "ja" : browserLanguage.startsWith("en") ? "en" : "zh";
+      }
+      document.documentElement.lang = preferredLanguage === "ja" ? "ja-JP" : preferredLanguage === "en" ? "en" : "zh-CN";
+    </script>
     <link rel="icon" href="assets/vrviz-quest-icon.png" type="image/png" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
@@ -25,7 +34,7 @@
     <a class="skip-link" href="#main" data-i18n="skip">跳到主要内容</a>
     <header class="site-header" data-header>
       <div class="container nav-wrap">
-        <a class="brand" href="#top" aria-label="VRViz 首页">
+        <a class="brand" href="#top" aria-label="VRViz 首页" data-i18n-aria-label="brandLabel">
           <img class="brand-app-icon" src="assets/vrviz-quest-icon.png" alt="" aria-hidden="true" />
           <span class="brand-wordmark"><span class="brand-v">V</span><span class="brand-rest">Rviz</span></span>
         </a>
@@ -40,7 +49,7 @@
           <i></i><i></i>
           </button>
         </div>
-        <nav id="site-nav" class="site-nav" aria-label="主要导航">
+        <nav id="site-nav" class="site-nav" aria-label="主要导航" data-i18n-aria-label="navLabel">
           <a href="#features" data-i18n="navFeatures">核心能力</a>
           <a href="#workflow" data-i18n="navWorkflow">工作方式</a>
           <a href="#start" data-i18n="navStart">快速开始</a>
@@ -65,14 +74,14 @@
               <a class="button button-quiet" href="#features"><span data-i18n="heroExplore">探索能力</span><span aria-hidden="true">↓</span></a>
             </div>
             <p class="standalone-note"><span aria-hidden="true">✓</span><span data-i18n="standaloneNote">在 Quest 本地独立运行，无需连接 PC、串流或使用数据线</span></p>
-            <dl class="hero-facts" aria-label="VRViz 技术摘要">
+            <dl class="hero-facts" aria-label="VRViz 技术摘要" data-i18n-aria-label="factsLabel">
               <div><dt data-i18n="factPlatform">平台</dt><dd>Meta Quest</dd></div>
               <div><dt data-i18n="factConnection">连接</dt><dd>WebSocket</dd></div>
               <div><dt data-i18n="factEngine">运行方式</dt><dd>Standalone</dd></div>
             </dl>
           </div>
 
-          <div class="hero-visual reveal" aria-label="VRViz 三维机器人数据示意图">
+          <div class="hero-visual reveal" aria-label="VRViz 三维机器人数据示意图" data-i18n-aria-label="visualLabel">
             <div class="visual-stage">
               <div class="hud-top"><span>VRVIZ / LIVE VIEW</span><span class="live"><i></i> CONNECTED</span></div>
               <div class="orbit orbit-one"></div>
@@ -171,6 +180,16 @@
                   <div><span>01</span><strong data-i18n="robotModeTitle">机器人遥控</strong><small data-i18n="robotModeText">通过手柄控制机器人移动，并向 ROS 输出 /cmd_vel 速度指令。</small></div>
                   <div><span>02</span><strong data-i18n="humanModeTitle">用户移动</strong><small data-i18n="humanModeText">使用手柄控制视点在 VR 场景中移动。</small></div>
                 </div>
+                <div class="controller-guide">
+                  <p class="controller-guide-title" data-i18n="controllerGuideTitle">按键操作</p>
+                  <ul>
+                    <li><kbd>MENU · L</kbd><span data-i18n="controllerMenuAction">打开 LiDAR 控制面板</span></li>
+                    <li><kbd>X</kbd><span data-i18n="controllerXAction">打开摄像头图像</span></li>
+                    <li><kbd>Y</kbd><span data-i18n="controllerYAction">导入机器人 STL 模型</span></li>
+                    <li><kbd>A</kbd><span data-i18n="controllerAAction">切换至移动模式</span></li>
+                    <li><kbd>B</kbd><span data-i18n="controllerBAction">切换至遥控模式</span></li>
+                  </ul>
+                </div>
               </div>
             </article>
           </div>
@@ -188,7 +207,7 @@
             <li><span>02</span><div><h3 data-i18n="step2Title">选择话题</h3><p data-i18n="step2Text">配置 PointCloud2、LaserScan 等话题，并启用当前任务所需的数据。</p></div><b aria-hidden="true">→</b></li>
             <li><span>03</span><div><h3 data-i18n="step3Title">进入空间</h3><p data-i18n="step3Text">佩戴 Quest，在 Unity 构建的三维场景中观察数据流，检查感知结果与环境之间的关系。</p></div></li>
           </ol>
-          <div class="pipeline reveal" aria-label="数据传输流程">
+          <div class="pipeline reveal" aria-label="数据传输流程" data-i18n-aria-label="pipelineLabel">
             <span>ROS<br /><small>DATA SOURCE</small></span><i></i>
             <span>rosbridge<br /><small>WEBSOCKET</small></span><i></i>
             <span>VRViz<br /><small>UNITY CLIENT</small></span><i></i>

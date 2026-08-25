@@ -34,10 +34,44 @@ const translations = {
   },
 };
 
+Object.assign(translations.zh, {
+  controllerGuideTitle: "按键操作",
+  controllerMenuAction: "打开 LiDAR 控制面板",
+  controllerXAction: "打开摄像头图像",
+  controllerYAction: "导入机器人 STL 模型",
+  controllerAAction: "切换至移动模式",
+  controllerBAction: "切换至遥控模式",
+});
+
+Object.assign(translations.ja, {
+  heroTitle: "ロボットデータ<br /><em>を空間の中へ</em>",
+  controllerGuideTitle: "ボタン操作",
+  controllerMenuAction: "LiDARコントロールパネルを開く",
+  controllerXAction: "カメラ画像を開く",
+  controllerYAction: "ロボットのSTLモデルをインポート",
+  controllerAAction: "移動モードへ切り替え",
+  controllerBAction: "遠隔操作モードへ切り替え",
+});
+
+Object.assign(translations.en, {
+  controllerGuideTitle: "Controller shortcuts",
+  controllerMenuAction: "Open the LiDAR control panel",
+  controllerXAction: "Open the camera view",
+  controllerYAction: "Import a robot STL model",
+  controllerAAction: "Switch to move mode",
+  controllerBAction: "Switch to teleoperation mode",
+});
+
 const storeLinks = {
   zh: "https://www.meta.com/zh-cn/experiences/vrviz/2161760508085814/",
   ja: "https://www.meta.com/ja-jp/experiences/vrviz/2161760508085814/",
   en: "https://www.meta.com/en-us/experiences/vrviz/2161760508085814/",
+};
+
+const accessibilityLabels = {
+  zh: { brandLabel: "VRViz 首页", navLabel: "主要导航", factsLabel: "VRViz 技术摘要", visualLabel: "VRViz 三维机器人数据示意图", pipelineLabel: "数据传输流程" },
+  ja: { brandLabel: "VRViz ホーム", navLabel: "メインナビゲーション", factsLabel: "VRViz 技術概要", visualLabel: "VRVizの3Dロボットデータ表示イメージ", pipelineLabel: "データ転送フロー" },
+  en: { brandLabel: "VRViz home", navLabel: "Main navigation", factsLabel: "VRViz technical summary", visualLabel: "VRViz 3D robot data visualization", pipelineLabel: "Data transfer flow" },
 };
 
 const header = document.querySelector("[data-header]");
@@ -47,6 +81,7 @@ const languageButtons = document.querySelectorAll("[data-lang]");
 
 function setLanguage(language, persist = true) {
   const selected = translations[language] ?? translations.zh;
+  const selectedAccessibilityLabels = accessibilityLabels[language] ?? accessibilityLabels.zh;
   document.documentElement.lang = selected.locale;
   document.title = selected.title;
   document.querySelector('meta[name="description"]')?.setAttribute("content", selected.description);
@@ -59,6 +94,10 @@ function setLanguage(language, persist = true) {
   document.querySelectorAll("[data-i18n-html]").forEach((element) => {
     const value = selected[element.dataset.i18nHtml];
     if (value !== undefined) element.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const value = selectedAccessibilityLabels[element.dataset.i18nAriaLabel];
+    if (value !== undefined) element.setAttribute("aria-label", value);
   });
   languageButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lang === language)));
   document.querySelectorAll("[data-store-link]").forEach((link) => {
