@@ -229,6 +229,86 @@
             <div><span>✓</span><p><strong data-i18n="check3Title">安装并配置 VRViz</strong><small data-i18n="check3Text">在 Quest 中输入连接地址和话题名称，然后启用相应的显示功能。</small></p></div>
           </div>
         </div>
+        <div class="container rosbridge-guide reveal" aria-labelledby="rosbridge-guide-title">
+          <div class="rosbridge-guide-intro">
+            <div>
+              <p class="rosbridge-kicker" data-i18n="rosGuideKicker">ROSBRIDGE / 连接准备</p>
+              <h3 id="rosbridge-guide-title" data-i18n="rosGuideTitle">为 ROS 1 与 ROS 2 准备 WebSocket</h3>
+            </div>
+            <p data-i18n="rosGuideLead">在运行 ROS 的电脑上安装并启动 rosbridge，再将同一网络内可访问的 IP 与端口填入 VRViz。</p>
+          </div>
+
+          <div class="ros-guide-grid">
+            <article class="ros-guide-card">
+              <header>
+                <span class="ros-guide-version">ROS 1</span>
+                <span class="ros-guide-distro">Noetic</span>
+              </header>
+              <div class="ros-guide-step">
+                <div class="ros-guide-step-title"><span>01</span><h4 data-i18n="rosInstallTitle">安装 rosbridge</h4></div>
+                <p data-i18n="ros1InstallText">在 ROS 电脑上执行：</p>
+                <pre><code>sudo apt update
+sudo apt install ros-noetic-rosbridge-server</code></pre>
+              </div>
+              <div class="ros-guide-step">
+                <div class="ros-guide-step-title"><span>02</span><h4 data-i18n="rosLaunchTitle">启动 WebSocket</h4></div>
+                <p data-i18n="ros1LaunchText">加载 Noetic 环境并启动 rosbridge：</p>
+                <pre><code>source /opt/ros/noetic/setup.bash
+roslaunch rosbridge_server rosbridge_websocket.launch</code></pre>
+              </div>
+            </article>
+
+            <article class="ros-guide-card">
+              <header>
+                <span class="ros-guide-version">ROS 2</span>
+                <span class="ros-guide-distro">Humble / Jazzy</span>
+              </header>
+              <div class="ros-guide-step">
+                <div class="ros-guide-step-title"><span>01</span><h4 data-i18n="rosInstallTitle">安装 rosbridge</h4></div>
+                <p data-i18n="ros2InstallText">更新软件源，然后只安装与你的 ROS 2 发行版对应的包：</p>
+                <div class="ros-command-options">
+                  <div class="ros-command-option"><span>Humble</span><pre><code>sudo apt update
+sudo apt install ros-humble-rosbridge-server</code></pre></div>
+                  <div class="ros-command-option"><span>Jazzy</span><pre><code>sudo apt update
+sudo apt install ros-jazzy-rosbridge-server</code></pre></div>
+                </div>
+              </div>
+              <div class="ros-guide-step">
+                <div class="ros-guide-step-title"><span>02</span><h4 data-i18n="rosLaunchTitle">启动 WebSocket</h4></div>
+                <p data-i18n="ros2LaunchText">加载对应的 ROS 2 环境，再使用当前官方 XML 启动文件：</p>
+                <div class="ros-command-options">
+                  <div class="ros-command-option"><span>Humble</span><pre><code>source /opt/ros/humble/setup.bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml</code></pre></div>
+                  <div class="ros-command-option"><span>Jazzy</span><pre><code>source /opt/ros/jazzy/setup.bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml</code></pre></div>
+                </div>
+                <div class="ros-guide-compatibility">
+                  <strong data-i18n="rosCompatibilityTitle">版本兼容</strong>
+                  <p data-i18n="rosCompatibilityText">如果提示找不到启动文件，可先查看本机 rosbridge 包实际安装的文件：</p>
+                  <pre><code>ls "$(ros2 pkg prefix rosbridge_server)/share/rosbridge_server/launch"</code></pre>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="ros-connection">
+            <div class="ros-connection-copy">
+              <p class="ros-connection-index" data-i18n="rosConnectionIndex">03 / 连接 VRVIZ</p>
+              <h4 data-i18n="rosConnectionTitle">填写 ROS 电脑的 IP 与端口</h4>
+              <p data-i18n="rosConnectionText">rosbridge 默认使用 9090 端口。请把示例 IP 替换为运行 ROS 的电脑在局域网中的 IPv4 地址。</p>
+              <code class="ros-endpoint-template" data-i18n="rosEndpointTemplate">ws://&lt;ROS 电脑 IP&gt;:9090</code>
+            </div>
+            <dl class="ros-connection-values">
+              <div class="ros-connection-address"><dt data-i18n="rosAddressExampleLabel">完整地址示例</dt><dd><code>ws://192.168.1.100:9090</code></dd></div>
+              <div><dt data-i18n="rosIpFieldLabel">VRViz · IP</dt><dd><code>192.168.1.100</code></dd></div>
+              <div><dt data-i18n="rosPortFieldLabel">VRViz · Port</dt><dd><code>9090</code></dd></div>
+            </dl>
+            <aside class="ros-network-note">
+              <strong data-i18n="rosNetworkNoteTitle">连接检查</strong>
+              <p data-i18n="rosNetworkNoteText">Quest 与 ROS 电脑需处于可互通的网络，并允许 TCP 9090 通过防火墙。IP 栏只填地址，不要填 ws://，也不要使用 localhost 或 127.0.0.1；请仅在可信局域网或 VPN 中开放 rosbridge。</p>
+            </aside>
+          </div>
+        </div>
         <div id="download" class="container download-panel reveal">
           <div class="download-copy">
             <span class="quest-symbol" aria-hidden="true">∞</span>
